@@ -11,7 +11,7 @@ void render(int num, int tower[][3]){
 }
 
 void move(int num, int towers[][3], int heights[3], int from, int to){
-    if(heights[from]>0 && (heights[to]==0 || towers[heights[from]-1][from] > towers[heights[to]][to])){
+    if(heights[from]>0 && (heights[to]==0 || towers[heights[from]-1][from] < towers[heights[to]][to])){
         towers[heights[to]++][to] = towers[heights[from]-1][from];
         towers[--heights[from]][from] = 0;
     } else{
