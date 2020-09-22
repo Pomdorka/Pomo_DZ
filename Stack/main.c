@@ -24,10 +24,8 @@ int pop(struct STACK * st, int * b){
 }
 
 void print(struct STACK * st){
-    int i=0;
-    while (st->size-i!=0){
-        i++;
-        printf("\t%d\n", st->num1[st->size-i]);
+    for(int i=0; i<st->size; i++){
+        printf("\t%d\n", st->num1[st->size-i-1]);
     }
 }
 
