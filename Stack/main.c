@@ -14,6 +14,7 @@ int push(int a, struct STACK * st){
         return 0;
     }
 }
+
 int pop(struct STACK * st, int * b){
     if(st->size==0){
         return 1;
@@ -40,33 +41,28 @@ int main(int argc, char *argv[]){
             scanf(" %c", &oper);
             switch(oper){
                 case '+':
-                    //printf("enter number: ");
                     scanf("%d", &number);
                     if(push(number, &stack_1)){
-                        printf("\toverflow\n");
+                        printf("\tOverflow\n");
                     };
                     break;
                 case '-':
-
                     if(pop(&stack_1, &value)){
-                        printf("\tunderflow\n");
+                        printf("\tUnderflow\n");
                     } else{
                         printf("\t%d\n", value);
                     }
-
                     break;
                 case '=':
                     print(&stack_1);
                     break;
                 case 'x':
-                    printf("\tEnd of input");
+                    printf("\tExit");
                     return 0;
                 default :
-                    printf("\tincorrect operation");
+                    printf("\tIncorrect operation");
                     break;
             }
         }
-
-
     return 0;
 }
