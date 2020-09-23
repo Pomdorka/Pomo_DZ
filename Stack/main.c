@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct STACK{
+struct my_stack{
     int num1[100];
     int size;
 };
 
-int push(int a, struct STACK * st){
+int push(int a, struct my_stack * st){
     if(st->size==100){
         return 1;
     } else{
@@ -15,7 +15,7 @@ int push(int a, struct STACK * st){
     }
 }
 
-int pop(struct STACK * st, int * b){
+int pop(struct my_stack * st, int * b){
     if(st->size==0){
         return 1;
     } else{
@@ -24,14 +24,14 @@ int pop(struct STACK * st, int * b){
     }
 }
 
-void print(struct STACK * st){
+void print(struct my_stack * st){
     for(int i=0; i<st->size; i++){
         printf("\t%d\n", st->num1[st->size-i-1]);
     }
 }
 
-int main(int argc, char *argv[]){
-    struct STACK stack_1;
+int main(int argc, char * argv[]){
+    struct my_stack stack_1;
     int value, number;
     char oper;
     stack_1.size=0;
