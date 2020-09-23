@@ -36,33 +36,33 @@ int main(int argc, char * argv[]){
     char oper;
     stack_1.size=0;
     printf("'+[num]' to push element\n'-' to pop element\n'=' to print stack\n'x' to exit\n");
-        while(1){
-            printf(":");
-            scanf(" %c", &oper);
-            switch(oper){
-                case '+':
-                    scanf("%d", &number);
-                    if(push(number, &stack_1)){
-                        printf("\tOverflow\n");
-                    };
-                    break;
-                case '-':
-                    if(pop(&stack_1, &value)){
-                        printf("\tUnderflow\n");
-                    } else{
-                        printf("\t%d\n", value);
-                    }
-                    break;
-                case '=':
-                    print(&stack_1);
-                    break;
-                case 'x':
-                    printf("\tExit");
-                    return 0;
-                default :
-                    printf("\tIncorrect operation");
-                    break;
-            }
+    while(1){
+        printf(":");
+        scanf(" %c", &oper);
+        switch(oper){
+            case '+':
+                scanf("%d", &number);
+                if(push(number, &stack_1)){
+                    printf("\tOverflow\n");
+                };
+                break;
+            case '-':
+                if(pop(&stack_1, &value)){
+                    printf("\tUnderflow\n");
+                } else{
+                    printf("\t%d\n", value);
+                }
+                break;
+            case '=':
+                print(&stack_1);
+                break;
+            case 'x':
+                printf("\tExit");
+                return 0;
+            default :
+                printf("\tIncorrect operation");
+                break;
         }
+    }
     return 0;
 }
