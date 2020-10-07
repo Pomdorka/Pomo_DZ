@@ -68,11 +68,12 @@ void dump(){
 }
 
 void check(){
-    int count;
+    int count, err=0;
     for(int i=0; i<N; i++){
         count+=nodes[i].lim;
+        if(nodes[i].lim==1) err=1;
     }
-    if(count>((N-1)*(N-2)/2)){
+    if(count>((N-1)*(N-2)/2) && err==0){
         printf("Svyazanniy\n");
     }
     else{
