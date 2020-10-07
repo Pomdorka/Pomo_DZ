@@ -23,17 +23,20 @@ int findOrCreate(char *val){
 
 int findPath(int n1, int n2){
     for(int j=0; j<nodes[n1].lim; j++){
-        if(strcmp(nodes[n1].path[j], nodes[n2].val)==0){
+        /*if(strcmp(nodes[n1].path[j], nodes[n2].val)==0){
             printf("Path already exists: %s -- %s\n", nodes[n1].val, nodes[n2].val);
             return 1;
-        }
+        }*/
     }
     return 0;
 }
 
 void addPath(int n1, int n2){
-    strcpy(nodes[n1].path[nodes[n1].lim], nodes[n2].val);
-    nodes[n1].lim++;
+    //if(nodes[n1].lim!=0){
+
+        strcpy(nodes[n1].path[nodes[n1].lim], nodes[n2].val);
+        nodes[n1].lim++;
+    //}
 }
 
 void dump(){
@@ -49,14 +52,32 @@ void dump(){
     fputs("graph{\n", ptrFile);
     for(int i=0; i<N; i++){
         for(int j=0; j<nodes[i].lim; j++){
-                fputs(nodes[i].val, ptrFile);
-                fputs(" -- ", ptrFile);
-                fputs(nodes[i].path[j], ptrFile);
-                fputs(";\n", ptrFile);
+                if(nodes[i].lim==1){
+                    fputs(nodes[i].val, ptrFile);
+                    fputs(";\n", ptrFile);
+                }
+                else{
+                    fputs(nodes[i].val, ptrFile);
+                    fputs(" -- ", ptrFile);
+                    fputs(nodes[i].path[j], ptrFile);
+                    fputs(";\n", ptrFile);
+                }
         }
     }
     fputs("}\n", ptrFile);
+}
 
+void check(){
+    int count;
+    for(int i=0; i<N; i++){
+        count+=nodes[i].lim;
+    }
+    if(count>((N-1)*(N-2)/2)){
+        printf("Svyazanniy\n");
+    }
+    else{
+        printf("Ne svyazanniy\n");
+    }
 }
 
 int main(int argc, char *argv[]){
@@ -79,8 +100,10 @@ int main(int argc, char *argv[]){
             addPath(n1, n2);
         }
     }
+    check();
     dump();
-    system("dot -Tpng C:\DZ_2\file.dot -o demo_dot.png");
+    //system("cd C:\DZ_2");
+    //system("dot -Tpng C:\DZ_2\file.dot -o demo_dot.png");
 
     return 0;
 }
