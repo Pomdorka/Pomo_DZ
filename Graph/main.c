@@ -36,6 +36,7 @@ void addPath(int n1, int n2){
 
         strcpy(nodes[n1].path[nodes[n1].lim], nodes[n2].val);
         nodes[n1].lim++;
+        printf("path added");
     //}
 }
 
@@ -52,16 +53,16 @@ void dump(){
     fputs("graph{\n", ptrFile);
     for(int i=0; i<N; i++){
         for(int j=0; j<nodes[i].lim; j++){
-                if(nodes[i].lim==1){
-                    fputs(nodes[i].val, ptrFile);
-                    fputs(";\n", ptrFile);
-                }
-                else{
-                    fputs(nodes[i].val, ptrFile);
-                    fputs(" -- ", ptrFile);
-                    fputs(nodes[i].path[j], ptrFile);
-                    fputs(";\n", ptrFile);
-                }
+            if(nodes[i].lim==1){
+                fputs(nodes[i].val, ptrFile);
+                fputs(";\n", ptrFile);
+            }
+            else{
+                fputs(nodes[i].val, ptrFile);
+                fputs(" -- ", ptrFile);
+                fputs(nodes[i].path[j], ptrFile);
+                fputs(";\n", ptrFile);
+            }
         }
     }
     fputs("}\n", ptrFile);
