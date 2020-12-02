@@ -105,8 +105,8 @@ void check_stepen(){
     }
     //printf("min: %s\n", nodes[min_i].val);
     //printf("hidden_path:\n");
-    for(int i=0; i<nodes[min_i].hidden_lim; i++){
-        printf("%s -- %s;\n", nodes[min_i].val, nodes[min_i].hidden_path[i]);
+    for(int i=0; i<nodes[min_i].lim; i++){
+        printf("%s -- %s;\n", nodes[min_i].val, nodes[min_i].path[i]);
     }
     for(int i=0; i<nodes[min_i].hidden_lim; i++){
         printf("%s -- %s;\n", nodes[min_i].val, nodes[min_i].hidden_path[i]);
