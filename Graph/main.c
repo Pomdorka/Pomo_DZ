@@ -95,19 +95,33 @@ void check_svyaz(){
 }
 
 void check_stepen(){
-    int min=INT_MAX, min_i=0;
+    int min_lim=INT_MAX, min_index[100], j=0;
     for(int i=0; i<N; i++){
-        if(nodes[i].lim<min){
-            min=nodes[i].lim;
-            min_i=i;
-            //printf("min: %d, min_i: %d \n", min, min_i);
+        if(nodes[i].lim+nodes[i].hidden_lim<min_lim){
+            min_lim=nodes[i].lim+nodes[i].hidden_lim;
+            //min_index=i;
+            //printf("min: %d, min_index: %d \n", min, min_index);
         }
     }
-    //printf("min: %s\n", nodes[min_i].val);
+    for(int i=0; i<N; i++){
+        if(nodes[i].lim + nodes[i].hidden_lim == min_lim){
+            min_index[j]=i;
+            j++;
+            //min_index=i;
+            //printf("min: %d, min_index: %d \n", min, min_index);
+        }
+    }
+    //printf("min: %s\n", nodes[min_index].val);
     //printf("hidden_path:\n");
-    for(int i=0; i<nodes[min_i].hidden_lim; i++){
-        printf("%s -- %s;\n", nodes[min_i].val, nodes[min_i].path[i]);
-        printf("%s -- %s;\n", nodes[min_i].val, nodes[min_i].hidden_path[i]);
+    //printf("j= %d, nodes[min_index[k]]=%d\n", j, nodes[min_index[j]].val);
+    for(int k=0; k<j; k++){
+        printf("Node: %s\n", nodes[min_index[k]].val);
+        for(int i=0; i<nodes[min_index[k]].lim+nodes[min_index[k]].hidden_lim; i++){
+            if(nodes[min_index[k]].lim != 0)
+                printf("%s -- %s;\n", nodes[min_index[k]].val, nodes[min_index[k]].path[i]);
+            if(nodes[min_index[k]].hidden_lim != 0)
+                printf("%s -- %s;\n", nodes[min_index[k]].val, nodes[min_index[k]].hidden_path[i]);
+        }
     }
 }
 
@@ -137,8 +151,8 @@ int main(int argc, char *argv[]){
     //check_svyaz();
     check_stepen();
     //dump();
-    //system("cd C:\Users\Àíäðåé\Desktop\Inf_DZ\Graph");
-    //system("dot -Tpng C:\Users\Àíäðåé\Desktop\Inf_DZ\Graph\file.dot -o demo_dot.png");
+    //system("cd C:\Users\Ã€Ã­Ã¤Ã°Ã¥Ã©\Desktop\Inf_DZ\Graph");
+    //system("dot -Tpng C:\Users\Ã€Ã­Ã¤Ã°Ã¥Ã©\Desktop\Inf_DZ\Graph\file.dot -o demo_dot.png");
 
     return 0;
 }
